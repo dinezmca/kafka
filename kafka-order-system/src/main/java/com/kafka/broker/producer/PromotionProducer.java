@@ -21,12 +21,12 @@ public class PromotionProducer {
 
 	public void publish(PromotionMessage message) {
 		try {
-			SendResult<String, PromotionMessage> sendResult = kafkaTemplate.send("t.commodity.promotion", message).get();
+			SendResult<String, PromotionMessage> sendResult = kafkaTemplate.send("t.commodity.promotion", message)
+					.get();
 
 			LOG.info("Send result success for message {}", sendResult.getProducerRecord().value());
 		} catch (InterruptedException | ExecutionException e) {
 			LOG.error("Error publishing {}, cause {}", message, e.getMessage());
 		}
 	}
-
 }
